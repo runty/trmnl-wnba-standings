@@ -1,24 +1,46 @@
 <div class="layout layout--row gap--medium">
-  {% for conf in conferences %}
-    <div class="stretch-x {% if forloop.last %}pl--2 border-l-2{% endif %}">
-      <table class="tbl tbl-tight">
-        {% for team in conf.teams %}
-          <tr>
-            <td class="pr--1" style="width: 12px;">
-              <span class="description">{{ team.rank }}</span>
-            </td>
-            <td class="px--1">
-              <span class="label label--small">{{ team.short_name }}</span>
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
-  {% endfor %}
+  {% assign west = conferences[1] %}
+  {% assign east = conferences[0] %}
+
+  <div class="stretch-x">
+    <table class="tbl tbl-tight">
+      {% for team in west.teams %}
+        <tr>
+          <td class="pr--1" style="width: 12px;">
+            <span class="description">{{ team.rank }}</span>
+          </td>
+          <td class="px--1" style="width: 14px;">
+            <img src="{{ team.logo }}" width="14" height="14" class="image--contain" />
+          </td>
+          <td class="px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="stretch-x pl--2 border-l-2">
+    <table class="tbl tbl-tight">
+      {% for team in east.teams %}
+        <tr>
+          <td class="pr--1" style="width: 12px;">
+            <span class="description">{{ team.rank }}</span>
+          </td>
+          <td class="px--1" style="width: 14px;">
+            <img src="{{ team.logo }}" width="14" height="14" class="image--contain" />
+          </td>
+          <td class="px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
 
 <div class="title_bar">
   <img class="image" src="https://a.espncdn.com/i/teamlogos/leagues/500/wnba.png" />
-  <span class="title">WNBA (E, W)</span>
+  <span class="title">WNBA (W, E)</span>
   <span class="instance">{{ date_short }}</span>
 </div>
