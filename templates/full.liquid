@@ -1,0 +1,83 @@
+<div class="layout layout--row gap--medium">
+  <!-- Standings -->
+  <div class="stretch-x">
+    {% for conf in conferences %}
+      <div class="mb--2">
+        <div class="conf-header label label--small mb--1 pb--1">{{ conf.abbr }}</div>
+        <table class="tbl">
+          {% for team in conf.teams %}
+            <tr class="border-b-1">
+              <td class="py--1 pr--1" style="width: 14px;">
+                <span class="description">{{ team.rank }}</span>
+              </td>
+              <td class="py--1 px--1" style="width: 18px;">
+                <img src="{{ team.logo }}" width="18" height="18" class="image--contain" />
+              </td>
+              <td class="py--1 px--1">
+                <span class="label label--small">{{ team.short_name }}</span>
+              </td>
+              <td class="py--1 px--1 nowrap text--right">
+                <span class="label label--small">{{ team.record }}</span>
+              </td>
+              <td class="py--1 pl--1 nowrap text--right">
+                <span class="description">{{ team.gb }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Today's Games -->
+  <div class="stretch-x pl--3 border-l-2">
+    <div class="title title--small bold mb--2">Today's Games</div>
+
+    {% if games_count == 0 %}
+      <span class="description">No games scheduled today.</span>
+    {% else %}
+      {% for game in games %}
+        <div class="mb--3 pb--2 border-b-1">
+          <table class="tbl">
+            <tr>
+              <td class="py--1" style="width: 22px;">
+                <img src="{{ game.away.logo }}" width="22" height="22" class="image--contain" />
+              </td>
+              <td class="py--1 px--1">
+                <span class="label label--small bold">{{ game.away.short_name }}</span>
+              </td>
+              <td class="py--1 text--right nowrap">
+                <span class="description">{{ game.away.record }}</span>
+              </td>
+              {% if game.completed or game.in_progress %}
+                <td class="py--1 pl--2 text--right nowrap" rowspan="2" style="width: 40px;">
+                  <span class="label bold">{{ game.away.score }}<br>{{ game.home.score }}</span>
+                </td>
+              {% endif %}
+            </tr>
+            <tr>
+              <td class="py--1" style="width: 22px;">
+                <img src="{{ game.home.logo }}" width="22" height="22" class="image--contain" />
+              </td>
+              <td class="py--1 px--1">
+                <span class="label label--small bold">{{ game.home.short_name }}</span>
+              </td>
+              <td class="py--1 text--right nowrap">
+                <span class="description">{{ game.home.record }}</span>
+              </td>
+            </tr>
+          </table>
+          <div class="text--right mt--1">
+            <span class="description text-sm">{{ game.time }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="title_bar">
+  <img class="image" src="https://a.espncdn.com/i/teamlogos/leagues/500/wnba.png" />
+  <span class="title">WNBA Standings</span>
+  <span class="instance">{{ date }}</span>
+</div>

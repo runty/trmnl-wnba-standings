@@ -1,0 +1,25 @@
+uuid: ""
+name: "WNBA Standings & Today's Games"
+author: "phobus"
+author_email: ""
+description: >
+  Live WNBA standings by conference with team logos and records,
+  plus today's games with matchups, times, and scores.
+  Data sourced from ESPN and updated every 4 hours.
+
+markup_version: 1
+strategy: polling
+refresh_frequency: 14400  # 4 hours
+
+# Replace YOUR_GITHUB_USERNAME before publishing
+polling_url: "https://YOUR_GITHUB_USERNAME.github.io/trmnl-wnba-standings/standings.json"
+polling_verb: GET
+
+layouts:
+  - full
+  - half_horizontal
+  - half_vertical
+  - quadrant
+
+categories:
+  - Sports
