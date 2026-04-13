@@ -1,53 +1,30 @@
 <div class="layout layout--row gap--medium">
-  <!-- Standings (compact) -->
-  <div class="stretch-x">
-    {% for conf in conferences %}
-      <div class="conf-header label label--small mb--1 pb--1">{{ conf.abbr }}</div>
-      <table class="tbl">
+  {% for conf in conferences %}
+    <div class="stretch-x {% if forloop.last %}pl--3 border-l-2{% endif %}">
+      <div class="bold label label--small mb--1">{{ conf.abbr }}</div>
+      <table class="tbl tbl-tight">
         {% for team in conf.teams %}
-          <tr class="border-b-1">
-            <td class="py--1 px--1" style="width: 16px;">
+          <tr>
+            <td class="pr--1" style="width: 14px;">
+              <span class="description">{{ team.rank }}</span>
+            </td>
+            <td class="px--1" style="width: 16px;">
               <img src="{{ team.logo }}" width="16" height="16" class="image--contain" />
             </td>
-            <td class="py--1 px--1">
-              <span class="label label--small">{{ team.abbr }}</span>
+            <td class="px--1">
+              <span class="label label--small">{{ team.short_name }}</span>
             </td>
-            <td class="py--1 text--right nowrap">
+            <td class="px--1 nowrap text--right">
               <span class="label label--small">{{ team.record }}</span>
+            </td>
+            <td class="pl--1 nowrap text--right">
+              <span class="description">{{ team.gb }}</span>
             </td>
           </tr>
         {% endfor %}
       </table>
-    {% endfor %}
-  </div>
-
-  <!-- Today's Games -->
-  <div class="stretch-x pl--3 border-l-2">
-    <div class="label bold mb--1">Games</div>
-    {% if games_count == 0 %}
-      <span class="description">No games today.</span>
-    {% else %}
-      {% for game in games limit: 3 %}
-        <div class="mb--2 border-b-1 pb--1">
-          <div class="flex flex--between flex--center-y">
-            <span class="flex flex--center-y gap--xsmall">
-              <img src="{{ game.away.logo }}" width="16" height="16" class="image--contain" />
-              <span class="label label--small">{{ game.away.abbr }}</span>
-            </span>
-            <span class="description">{{ game.away.record }}</span>
-          </div>
-          <div class="flex flex--between flex--center-y">
-            <span class="flex flex--center-y gap--xsmall">
-              <img src="{{ game.home.logo }}" width="16" height="16" class="image--contain" />
-              <span class="label label--small">{{ game.home.abbr }}</span>
-            </span>
-            <span class="description">{{ game.home.record }}</span>
-          </div>
-          <div class="text--right"><span class="description text-sm">{{ game.time }}</span></div>
-        </div>
-      {% endfor %}
-    {% endif %}
-  </div>
+    </div>
+  {% endfor %}
 </div>
 
 <div class="title_bar">
