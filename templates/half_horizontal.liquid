@@ -1,33 +1,58 @@
 <div class="layout layout--row gap--medium">
-  {% for conf in conferences %}
-    <div class="stretch-x {% if forloop.last %}pl--3 border-l-2{% endif %}">
-      <table class="tbl tbl-tight">
-        {% for team in conf.teams %}
-          <tr>
-            <td class="pr--1" style="width: 14px;">
-              <span class="description">{{ team.rank }}</span>
-            </td>
-            <td class="px--1" style="width: 16px;">
-              <img src="{{ team.logo }}" width="16" height="16" class="image--contain" />
-            </td>
-            <td class="px--1">
-              <span class="label label--small">{{ team.short_name }}</span>
-            </td>
-            <td class="px--1 nowrap text--right">
-              <span class="label label--small">{{ team.record }}</span>
-            </td>
-            <td class="pl--1 nowrap text--right">
-              <span class="description">{{ team.gb }}</span>
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
-  {% endfor %}
+  {% assign west = conferences[1] %}
+  {% assign east = conferences[0] %}
+
+  <div class="stretch-x">
+    <table class="tbl tbl-tight">
+      {% for team in west.teams %}
+        <tr>
+          <td class="pr--1" style="width: 14px;">
+            <span class="description">{{ team.rank }}</span>
+          </td>
+          <td class="px--1" style="width: 16px;">
+            <img src="{{ team.logo }}" width="16" height="16" class="image--contain" />
+          </td>
+          <td class="px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+          <td class="px--1 nowrap text--right">
+            <span class="label label--small">{{ team.record }}</span>
+          </td>
+          <td class="pl--1 nowrap text--right">
+            <span class="description">{{ team.gb }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="stretch-x pl--3 border-l-2">
+    <table class="tbl tbl-tight">
+      {% for team in east.teams %}
+        <tr>
+          <td class="pr--1" style="width: 14px;">
+            <span class="description">{{ team.rank }}</span>
+          </td>
+          <td class="px--1" style="width: 16px;">
+            <img src="{{ team.logo }}" width="16" height="16" class="image--contain" />
+          </td>
+          <td class="px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+          <td class="px--1 nowrap text--right">
+            <span class="label label--small">{{ team.record }}</span>
+          </td>
+          <td class="pl--1 nowrap text--right">
+            <span class="description">{{ team.gb }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
 
 <div class="title_bar">
   <img class="image" src="https://a.espncdn.com/i/teamlogos/leagues/500/wnba.png" />
-  <span class="title">WNBA Standings</span>
+  <span class="title">WNBA Standings (West, East)</span>
   <span class="instance">{{ date_short }}</span>
 </div>
