@@ -1,7 +1,6 @@
 <div class="layout layout--row gap--medium">
   {% for conf in conferences %}
     <div class="stretch-x {% if forloop.last %}pl--3 border-l-2{% endif %}">
-      <div class="bold label label--small mb--1">{{ conf.abbr }}</div>
       <table class="tbl tbl-tight">
         {% for team in conf.teams %}
           <tr>
