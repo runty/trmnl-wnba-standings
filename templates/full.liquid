@@ -2,11 +2,9 @@
   <!-- Standings -->
   <div class="stretch-x">
     {% for conf in conferences %}
-      <div class="mb--2">
-        <div class="conf-header label label--small mb--1 pb--1">{{ conf.abbr }}</div>
-        <table class="tbl">
-          {% for team in conf.teams %}
-            <tr class="border-b-1">
+      <table class="tbl">
+        {% for team in conf.teams %}
+          <tr>
               <td class="py--1 pr--1" style="width: 14px;">
                 <span class="description">{{ team.rank }}</span>
               </td>
@@ -26,9 +24,8 @@
                 <span class="description">({{ team.streak }})</span>
               </td>
             </tr>
-          {% endfor %}
-        </table>
-      </div>
+        {% endfor %}
+      </table>
     {% endfor %}
   </div>
 
