@@ -1,6 +1,6 @@
 <div class="layout layout--row gap--medium">
   <!-- Standings -->
-  <div class="stretch-x">
+  <div class="no-shrink" style="width: 40%;">
     {% for conf in conferences %}
       <div class="bold label label--small mb--1 {% if forloop.first %}{% else %}mt--2{% endif %}">{{ conf.name }}</div>
       <table class="tbl tbl-tight">
