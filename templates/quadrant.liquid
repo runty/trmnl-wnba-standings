@@ -1,54 +1,48 @@
-<div class="layout layout--col gap--distribute">
-  <div class="flex gap--medium w--full">
-    {% assign west = conferences[1] %}
-    {% assign east = conferences[0] %}
+<div class="layout layout--row gap--medium">
+  {% assign west = conferences[1] %}
+  {% assign east = conferences[0] %}
 
-    <div class="stretch-x">
-      <table class="tbl tbl-tight">
-        {% for team in west.teams %}
-          <tr>
-            <td class="pr--1" style="width: 12px;">
-              <span class="description">{{ team.rank }}</span>
-            </td>
-            <td class="px--1" style="width: 14px;">
-              <img src="{{ team.logo }}" width="14" height="14" class="image--contain" />
-            </td>
-            <td class="px--1">
-              <span class="label label--small">{{ team.short_name }}</span>
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
-
-    <div class="stretch-x pl--2 border-l-2">
-      <table class="tbl tbl-tight">
-        {% for team in east.teams %}
-          <tr>
-            <td class="pr--1" style="width: 12px;">
-              <span class="description">{{ team.rank }}</span>
-            </td>
-            <td class="px--1" style="width: 14px;">
-              <img src="{{ team.logo }}" width="14" height="14" class="image--contain" />
-            </td>
-            <td class="px--1">
-              <span class="label label--small">{{ team.short_name }}</span>
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
+  <div class="stretch-x">
+    <table class="tbl tbl-tight">
+      {% for team in west.teams %}
+        <tr>
+          <td class="pr--1" style="width: 12px;">
+            <span class="description">{{ team.rank }}</span>
+          </td>
+          <td class="px--1" style="width: 14px;">
+            <img src="{{ team.logo }}" width="14" height="14" class="image--contain" />
+          </td>
+          <td class="px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+          <td class="pl--1 nowrap text--right">
+            <span class="description">{{ team.gb }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
   </div>
 
-  {% if games_count > 0 %}
-    <div class="w--full pt--1 border-t-1">
-      <div class="flex flex--wrap gap--small">
-        {% for game in games limit: 3 %}
-          <span class="description text-sm">{{ game.away.abbr }} @ {{ game.home.abbr }} {{ game.time }}{% unless forloop.last %} · {% endunless %}</span>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
+  <div class="stretch-x pl--2 border-l-2">
+    <table class="tbl tbl-tight">
+      {% for team in east.teams %}
+        <tr>
+          <td class="pr--1" style="width: 12px;">
+            <span class="description">{{ team.rank }}</span>
+          </td>
+          <td class="px--1" style="width: 14px;">
+            <img src="{{ team.logo }}" width="14" height="14" class="image--contain" />
+          </td>
+          <td class="px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+          <td class="pl--1 nowrap text--right">
+            <span class="description">{{ team.gb }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
 
 <div class="title_bar">
