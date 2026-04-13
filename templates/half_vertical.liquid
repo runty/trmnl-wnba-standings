@@ -1,50 +1,37 @@
-<div class="layout layout--col gap--distribute">
-  <!-- Standings -->
+<div class="layout layout--col">
   <div class="w--full">
     {% for conf in conferences %}
-      <div class="conf-header label label--small mb--1 pb--1">{{ conf.abbr }}</div>
-      <table class="tbl">
+      <div class="bold label label--small mb--1 {% if forloop.first %}{% else %}mt--2{% endif %}">{{ conf.name }}</div>
+      <table class="tbl tbl-tight">
         {% for team in conf.teams %}
-          <tr class="border-b-1">
-            <td class="py--1 px--1" style="width: 16px;">
+          <tr>
+            <td class="pr--1" style="width: 14px;">
+              <span class="description">{{ team.rank }}</span>
+            </td>
+            <td class="px--1" style="width: 16px;">
               <img src="{{ team.logo }}" width="16" height="16" class="image--contain" />
             </td>
-            <td class="py--1 px--1">
-              <span class="label label--small">{{ team.abbr }}</span>
+            <td class="px--1">
+              <span class="label label--small">{{ team.short_name }}</span>
             </td>
-            <td class="py--1 text--right nowrap">
+            <td class="px--1 nowrap text--right">
               <span class="label label--small">{{ team.record }}</span>
+            </td>
+            <td class="px--1 nowrap text--right">
+              <span class="description">{{ team.gb }}</span>
+            </td>
+            <td class="pl--1 nowrap text--right">
+              <span class="description">{{ team.streak }}</span>
             </td>
           </tr>
         {% endfor %}
       </table>
     {% endfor %}
   </div>
-
-  <!-- Today's Games -->
-  {% if games_count > 0 %}
-    <div class="w--full pt--1 border-t-1">
-      <div class="description bold mb--1">Today</div>
-      {% for game in games limit: 2 %}
-        <div class="flex flex--between flex--center-y mb--1">
-          <span class="flex flex--center-y gap--xsmall">
-            <img src="{{ game.away.logo }}" width="14" height="14" class="image--contain" />
-            <span class="description">{{ game.away.abbr }}</span>
-          </span>
-          <span class="description">@</span>
-          <span class="flex flex--center-y gap--xsmall">
-            <span class="description">{{ game.home.abbr }}</span>
-            <img src="{{ game.home.logo }}" width="14" height="14" class="image--contain" />
-          </span>
-          <span class="description text-sm">{{ game.time }}</span>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
 </div>
 
 <div class="title_bar">
   <img class="image" src="https://a.espncdn.com/i/teamlogos/leagues/500/wnba.png" />
-  <span class="title">WNBA</span>
+  <span class="title">WNBA Standings</span>
   <span class="instance">{{ date_short }}</span>
 </div>
