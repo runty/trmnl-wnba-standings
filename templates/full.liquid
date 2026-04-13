@@ -1,32 +1,30 @@
 <div class="layout layout--row gap--medium">
   <!-- Standings -->
   <div class="stretch-x">
-    {% for conf in conferences %}
-      <table class="tbl">
-        {% for team in conf.teams %}
-          <tr>
-              <td class="py--1 pr--1" style="width: 14px;">
-                <span class="description">{{ team.rank }}</span>
-              </td>
-              <td class="py--1 px--1" style="width: 18px;">
-                <img src="{{ team.logo }}" width="18" height="18" class="image--contain" />
-              </td>
-              <td class="py--1 px--1">
-                <span class="label label--small">{{ team.short_name }}</span>
-              </td>
-              <td class="py--1 px--1 nowrap text--right">
-                <span class="label label--small">{{ team.record }}</span>
-              </td>
-              <td class="py--1 px--1 nowrap text--right">
-                <span class="description">{{ team.gb }}</span>
-              </td>
-              <td class="py--1 pl--1 nowrap text--right">
-                <span class="description">({{ team.streak }})</span>
-              </td>
-            </tr>
-        {% endfor %}
-      </table>
-    {% endfor %}
+    <table class="tbl">
+      {% for team in standings %}
+        <tr>
+          <td class="py--1 pr--1" style="width: 14px;">
+            <span class="description">{{ team.overall_rank }}</span>
+          </td>
+          <td class="py--1 px--1" style="width: 18px;">
+            <img src="{{ team.logo }}" width="18" height="18" class="image--contain" />
+          </td>
+          <td class="py--1 px--1">
+            <span class="label label--small">{{ team.short_name }}</span>
+          </td>
+          <td class="py--1 px--1 nowrap text--right">
+            <span class="label label--small">{{ team.record }}</span>
+          </td>
+          <td class="py--1 px--1 nowrap text--right">
+            <span class="description">{{ team.gb }}</span>
+          </td>
+          <td class="py--1 pl--1 nowrap text--right">
+            <span class="description">({{ team.streak }})</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
   </div>
 
   <!-- Today's Games -->
@@ -36,13 +34,13 @@
     {% if games_count == 0 %}
       <span class="description">No games scheduled today.</span>
     {% else %}
-      <div class="flex flex--wrap gap--medium">
+      <div class="grid grid--cols-2 gap--small">
         {% for game in games %}
-          <div class="mb--2 pb--1 border-b-1" style="width: 48%;">
+          <div class="pb--1 border-b-1">
             <table class="tbl">
               <tr>
-                <td class="py--1" style="width: 18px;">
-                  <img src="{{ game.away.logo }}" width="18" height="18" class="image--contain" />
+                <td class="py--1" style="width: 16px;">
+                  <img src="{{ game.away.logo }}" width="16" height="16" class="image--contain" />
                 </td>
                 <td class="py--1 px--1">
                   <span class="label label--small bold">{{ game.away.short_name }}</span>
@@ -51,14 +49,14 @@
                   <span class="description">{{ game.away.record }}</span>
                 </td>
                 {% if game.completed or game.in_progress %}
-                  <td class="py--1 pl--1 text--right nowrap">
+                  <td class="py--1 pl--1 text--right">
                     <span class="label label--small bold">{{ game.away.score }}</span>
                   </td>
                 {% endif %}
               </tr>
               <tr>
-                <td class="py--1" style="width: 18px;">
-                  <img src="{{ game.home.logo }}" width="18" height="18" class="image--contain" />
+                <td class="py--1" style="width: 16px;">
+                  <img src="{{ game.home.logo }}" width="16" height="16" class="image--contain" />
                 </td>
                 <td class="py--1 px--1">
                   <span class="label label--small bold">{{ game.home.short_name }}</span>
@@ -67,13 +65,13 @@
                   <span class="description">{{ game.home.record }}</span>
                 </td>
                 {% if game.completed or game.in_progress %}
-                  <td class="py--1 pl--1 text--right nowrap">
+                  <td class="py--1 pl--1 text--right">
                     <span class="label label--small bold">{{ game.home.score }}</span>
                   </td>
                 {% endif %}
               </tr>
             </table>
-            <div class="text--right mt--1">
+            <div class="text--right">
               <span class="description text-sm">{{ game.time }}</span>
             </div>
           </div>

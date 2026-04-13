@@ -147,8 +147,19 @@ def main():
         print(f"ERR scoreboard: {e}", file=sys.stderr)
         games = []
 
+    # Build combined standings sorted by win pct, then wins
+    all_teams = []
+    for conf in conferences:
+        for team in conf["teams"]:
+            team["conf"] = conf["abbr"]
+            all_teams.append(team)
+    all_teams.sort(key=lambda t: (-float(t["pct"].lstrip(".")), -int(t["wins"])))
+    for i, team in enumerate(all_teams):
+        team["overall_rank"] = i + 1
+
     result = {
         "conferences": conferences,
+        "standings": all_teams,
         "games": games,
         "games_count": len(games),
         "date": now.strftime("%B %d, %Y"),
