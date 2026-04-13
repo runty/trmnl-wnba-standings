@@ -2,8 +2,4 @@
   field_type: author_bio
   name: About
   category: sports
-  description: >
-    WNBA standings and today's games, updated every 4 hours.
-    Data sourced from ESPN.
-    <br><br>
-    Built by <a href="https://github.com/runty" target="_blank">runty</a>
+  description: "WNBA standings and today's games, updated every 4 hours. Data sourced from ESPN.<br><br>Built by <a href='https://github.com/runty' target='_blank'>runty</a>"
